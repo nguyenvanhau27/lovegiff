@@ -1,46 +1,156 @@
 body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;   /* chỉ ẩn ngang, không khóa dọc */
+  font-family: "Segoe UI", sans-serif;
   background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-  font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Card box */
 .card {
   background: white;
   padding: 25px;
-  border-radius: 20px;
+  border-radius: 25px;
   text-align: center;
-  width: 350px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  width: 380px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 10;
+  min-height: 650px;
+  overflow: hidden;
 }
 
-.title {
-  color: #ff4d6d;
+/* TITLE FIX (không bị cắt chữ) */
+h1 {
+  font-size: 28px;
+  color: #ff4d88;
+  margin: 10px 0 20px;
+  line-height: 1.4;
+  display: block;
+  white-space: normal;
+}
+
+/* SLIDESHOW CONTAINER */
+.slideshow {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  margin: 15px auto;   /* căn giữa */
 }
 
 .love-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 350px;
-  border-radius: 15px;
-  margin: 15px 0;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.love-img.active {
+  opacity: 1;
 }
 
-#letter {
-  font-size: 16px;
+/* Letter typing (fixed height tránh nhảy) */
+#love-letter {
+  font-size: 15px;
   color: #444;
-  min-height: 80px;
+  height: 180px;
+  overflow-y: auto;
+  white-space: pre-line;
+  margin-top: 10px;
+  padding-right: 5px;
+  line-height: 1.5;
 }
 
-/* Floating hearts */
-.hearts::before {
-  content: "💖 💕 💘 💞";
+/* Scrollbar nhỏ xinh */
+#love-letter::-webkit-scrollbar {
+  width: 4px;
+}
+#love-letter::-webkit-scrollbar-thumb {
+  background: #ff9a9e;
+  border-radius: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Heart button */
+.heart {
+  font-size: 55px;
+  cursor: pointer;
+  margin: 15px 0;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease;
+}
+
+.heart:hover {
+  transform: scale(1.2);
+}
+
+/* Heart pulse */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Hidden message */
+.hidden {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 1s ease;
+}
+
+.hidden.show {
+  opacity: 1;
+  max-height: 200px;
+  margin-top: 15px;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+/* Small text */
+small {
+  display: block;
+  margin-top: 10px;
+  color: gray;
+  font-size: 12px;
+}
+
+/* 🌧️ Falling hearts */
+.falling-heart {
+  position: fixed;
+  top: -10px;
   font-size: 22px;
-  animation: float 3s infinite alternate;
+  animation: fall linear forwards;
+  z-index: 1;
+  pointer-events: none;
 }
 
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 420px) {
+  .card {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .slideshow {
+    width: 100%;
+    height: 360px;
+  }
 }

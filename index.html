@@ -1,24 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Valentine 💖</title>
+  <title>Forever With My Princess 💖</title>
+
+  <!-- Link CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+  <!-- 🎵 Background Music -->
+  <audio id="bg-music" loop>
+    <source src="music/love.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 💖 Click Sound -->
+  <audio id="click-sound">
+    <source src="music/click.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="card">
-    <h1 class="title">Happy Valentine’s Day 💘</h1>
+    <h1>Gửi Cục Zàng 💕</h1>
 
-    <img src="her.jpg" alt="My Love" class="love-img">
+<div class="slideshow">
+  <img class="love-img active" src="images/pic1.jpg">
+  <img class="love-img" src="images/pic2.jpg">
+  <img class="love-img" src="images/pic3.jpg">
+</div>
 
-    <p id="letter"></p>
+    <!-- 💌 Love Letter -->
+    <p id="love-letter"></p>
 
-    <div class="hearts"></div>
+    <!-- 💖 Heart Button -->
+    <div class="heart" id="heart-btn">💖</div>
 
+    <!-- Hidden Message -->
+    <p id="hidden-message" class="hidden">
+      Công chúa của anh à…  
+      Anh yêu em nhiều hơn cả những gì anh nói được 🥹💘  
+      Forever & Always.
+    </p>
 
-  <!-- QR Code library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <small>(Chạm màn hình để nhạc bắt đầu 🎵)</small>
+  </div>
+
+  <!-- Link JS -->
   <script src="script.js"></script>
+
 </body>
 </html>
